@@ -1,0 +1,170 @@
+"Q1"
+
+def is_odd_sum(a, b):
+    if (a + b) % 2 == 0:
+        return False
+    else:
+        return True
+        
+        
+        
+"Q2"
+
+def enumerate_values(first, last):
+    my_string = ''
+    for num in range(first, last + 1):
+        
+        my_string += str(num)
+        
+
+        if num != last:
+            my_string += " "
+    return my_string
+    
+"Q3"
+def read_number_list():
+    num = int(input())
+    my_list = []
+    while num != int(-999):
+        my_list.append(num)
+        num = int(input())
+    else:
+        
+        return my_list
+ 
+ "Q4"
+ 
+ def calculate_average(list):
+    list = [float(i) for i in list]
+    average = "{:.2f}".format(sum(list)/len(list))
+    return str(average)
+
+"Q5"
+
+def read_words(filename):
+    words_file = open(filename, "r")
+    words_string = words_file.read()
+    words_file.close()
+    words_list = words_string.split()
+    return words_list
+    
+"Q6"
+
+def check_anagram(a, b):
+    n1 = len(a)  
+    n2 = len(b)  
+  
+   
+    if n1 != n2:  
+        return False
+  
+    
+    str1 = sorted(a) 
+    str2 = sorted(b) 
+  
+    for i in range(0, n1):  
+        if str1[i] != str2[i]:  
+            return False
+  
+    return True
+    
+"Q7"
+
+def analyse_scores(list_of_scores):
+    n= len(list_of_scores)
+    if (n==0):
+        print("Invalid list")
+    else:
+        total = 0
+        for s in list_of_scores:
+            total=total+s
+            
+        avg=total/n
+        upper=0
+        lower=0
+        for s in list_of_scores:
+            if s>=avg:
+                upper=upper+1
+            else:
+                lower=lower+1
+        print("Mean : "+ "{:.2f}".format(avg))
+        print("N above mean : "+str(upper))
+        print("N below mean : "+str(lower))
+        
+        
+"Q8"
+def prime_factors(num):
+    i = 2
+    factors = []
+    while i * i <= num:
+        if num % i:
+            i += 1
+        else:
+            num//= i
+            factors.append(i)
+            
+    if num > 1:
+        factors.append(num)
+    return factors
+ 
+"Q9"
+def letter_count(filename):
+    text_file = open(filename, "r")
+    text_string = text_file.read()
+    text_file.close()
+
+    letter_dict = {}
+    text_string = text_string.lower()
+    letters_list = list(text_string)
+
+    for letter in letters_list:
+        if letter.isalpha():
+            if letter in letter_dict:
+                letter_dict[letter] += 1
+            else:
+                letter_dict[letter] = 1
+
+    letter_list = []
+    for letter in letter_dict.keys():
+        letter_list += letter
+        
+    letter_list.sort()
+    
+    for key in letter_list:
+        print("%s : %s" % (key, letter_dict[key]))
+        
+"Q10"
+
+def convert_to_roman(number):
+    if 0 < number < 4000:
+        roman = ""
+        roms = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
+        ints = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+
+        for i in range(len(ints)):
+            count = int(number / ints[i])
+            number -= ints[i] * count
+            roman += roms[i] * count
+        return roman
+    else :
+        print ("Input must be between 1 and 3999")
+        exit()
+
+"Q11"
+
+def checksum(num):
+    l =  [int(d) for d in str(num)]
+    l.reverse()
+    
+    for i in range(1, len(l), 2):
+        l[i] = l[i]*2
+    
+    for i in range(len(l)):
+        if(l[i]/10>=1):
+            l[i] = sum([int(d) for d in str(l[i])])
+    s = sum(l)
+    if (s%7 == 0):
+        return True
+    else:
+        return False
+
